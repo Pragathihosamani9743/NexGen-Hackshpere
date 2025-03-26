@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KavachEye - Dashboard</title>
+    <link rel="icon" href="images/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            background-color: #f5f7fa;
+            overflow-x: hidden; 
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .sidebar {
+    width: 250px;
+    background: linear-gradient(180deg, rgba(26, 65, 78, 1) 0%, rgba(0, 0, 0, 0.85) 50%, rgba(53, 59, 61, 1) 100%);
+    padding: 20px;
+    color: #ffffff;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+.sidebar-header {
+    position: relative;
+    bottom: 23px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Lighter border */
+}
+
+.sidebar-header img {
+    position: relative;
+    right: 30px;
+    width: 120px;
+    height: 100px;
+    border-radius: 50%;
+    padding: 5px;
+}
+.sidebar-header h2 {
+    font-weight: bold;
+    font-size: 30px;
+    position: relative;
+    right: 60px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar li {
+    margin-bottom: 15px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s, background-color 0.3s;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.sidebar i {
+    margin-right: 10px;
+    width: 20px;
+}
+
+        .main-content {
+            margin-left: 250px; 
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #ffffff;
+            overflow-x: hidden; 
+        }
+        .navbar {
+            background-color: #fff;
+            color: #333;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 7px rgba(0,0,0,0.1);
+            border-bottom: 1px solid #e1e5eb;
+            width: calc(100% - 250px);
+            position: fixed; 
+            top: 0;
+            left: 250px; 
+            z-index: 1000;
+        }
+        .navbar h1{
+            position: relative;
+            left: 15px;
+        }
+        .search-filter {
+            display: flex;
+            align-items: center;
+        }
+        .search-container {
+            position: relative;
+            margin-right: 15px;
+        }
+        .search-container input {
+            background-color: #e8e9ea;
+            border: 1px solid #e1e5eb;
+            color: #333;
+            padding: 8px 30px 8px 10px;
+            border-radius: 20px;
+            width: 350px;
+            transition: width 0.3s ease;
+        }
+        .search-container input:focus {
+            width: 400px;
+            outline: none;
+        }
+        .search-container i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7f8c8d;
+        }
+        .location-container {
+            position: relative;
+            margin-right: 15px;
+        }
+        .location-container select {
+            appearance: none;
+            border: white;
+            background: none;
+            width: 10px;
+            color: #000000;
+            padding: 8px 20px 8px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: width 0.3s ease;
+        }
+        .location-container select:hover {
+            position: relative;
+            left: 20px;
+            width: 90px; 
+        }
+        .location-container i {
+            position: absolute;
+            left: 9px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #000000;
+            pointer-events: none;
+        }
+        .pipe{
+            position: relative;
+            right: 7px;
+            bottom: 2px;
+            font-size: 25px;
+        }
+        .filter-container {
+            position: relative;
+        }
+        .filter-container select {
+            appearance: none;
+            border: none;
+            width: 30px;
+            padding: 8px 10px 8px 10px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: width 0.3s ease;
+        }
+        .filter-container select:hover {
+            color: #000000;
+            position: relative;
+            left: 15px;
+            width: 90px; 
+        }
+        .filter-container i {
+            position: absolute;
+            right: 7px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #000000;
+            pointer-events: none;
+        }
+        .filter-container select{
+            background: none;
+        }
+        .user-container {
+            position: relative;
+        }
+        .user-container i {
+            position: absolute;
+            right: 1px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffffff;
+            pointer-events: none;
+        }
+        .user-container select{
+            background-color: #000000;
+        }
+        .user-container select {
+            color: white;
+            appearance: none;
+            position: relative;
+            left: 7px;
+            border: black;
+            width: 80px;
+            padding: 8px 10px 8px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #000000;
+            transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+        }
+        .user-container select:hover {
+            background-color: white;
+            color: #000000;
+            border: 1px solid black; 
+        }
+        .user-container i {
+            position: absolute;
+            right: 1px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffffff;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+        .user-container select:hover + i {
+            color: #000000; 
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            overflow: hidden;
+            margin-top: 80px; 
+        }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            top: 10px;
+        }
+        .stat-box {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            width: calc(50% - 20px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .stat-box h3 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .stat-box p {
+            font-size: 24px;
+            font-weight: bold;
+            color: #76828a;
+            margin-bottom: 5px;
+        }
+        .stat-box small {
+            font-size: 12px; 
+            color: #7f8c8d;
+        }
+        .incidents {
+            flex-grow: 1;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 2px;
+            box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 0.15), 10px 6px 6px rgba(0, 0, 0, 0.10); 
+            overflow: auto;
+        }
+        .incidents h3 {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #9e9e9e;
+        }
+        th {
+            background-color: #dcdee1;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="Logo">
+                <h2>KavachEye</h2>
+            </div>
+            <ul>
+                <li><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-video"></i> Live Feeds</a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="#"><i class="fas fa-bell"></i> Alerts</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="navbar">
+                <h1>Dashboard</h1>
+                <div class="search-filter">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search the contents...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="location-container">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <select>
+                            <option value="all" style="background-color: #cbc8c8;">Location</option>
+                            <option value="location1" style="background-color: #cbc8c8;">Location 1</option>
+                            <option value="location2" style="background-color: #cbc8c8;">Location 2</option>
+                            <option value="location3" style="background-color: #cbc8c8;">Location 3</option>
+                        </select>
+                    </div>
+                    <div class="pipe">
+                        <p> | </p>
+                    </div>
+                    <div class="filter-container">
+                        <select>
+                            <option value="all" style="background-color: #cbc8c8;">Filter</option>
+                            <option value="Resolved Issues" style="background-color: #cbc8c8;">Resolved Issues</option>
+                            <option value="Ongoing" style="background-color: #cbc8c8;">Ongoing</option>
+                        </select>
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <div class="user-container">
+                        <select>
+                            <option value="all" style="background-color: #cbc8c8;">Profile</option>
+                            <option value="View" style="background-color: #cbc8c8;">View</option>
+                            <option value="Log Out" style="background-color: #cbc8c8;">Log Out</option>
+                        </select>
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="stats">
+                    <div class="stat-box">
+                        <h3>Total Women</h3>
+                        <p>1,234</p>
+                        <small>+5.2% since last hour</small>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Total Men</h3>
+                        <p>789</p>
+                        <small>+2.8% since last hour</small>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Gender Ratio</h3>
+                        <p>61:39</p>
+                        <small>Women to Men</small>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Anomalies Detected</h3>
+                        <p>3</p>
+                        <small>In the last hour</small>
+                    </div>
+                </div>
+                <div class="incidents">
+                    <h3>Incident Reporting</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Location</th>
+                                <th>Timestamp</th>
+                                <th>Incident Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr onclick="window.location.href='location1.html';">
+                                <td>Park Avenue</td>
+                                <td>2023-06-15 18:23:45</td>
+                                <td>Suspicious Behavior</td>
+                                <td>Pending</td>
+                            </tr>
+                            <tr onclick="window.location.href='location1.html';">
+                                <td>Main Street</td>
+                                <td>2023-06-14 22:17:09</td>
+                                <td>Assault</td>
+                                <td>Closed</td>
+                            </tr>
+                            <tr onclick="window.location.href='location1.html';">
+                                <td>Church Street</td>
+                                <td>2023-06-13 15:42:22</td>
+                                <td>Harassment</td>
+                                <td>Resolved</td>
+                            </tr>
+                            <tr onclick="window.location.href='location1.html';">
+                                <td>Avenue Road</td>
+                                <td>2023-06-12 09:15:37</td>
+                                <td>Theft</td>
+                                <td>In Progress</td>
+                            </tr>
+                            <tr onclick="window.location.href='location1.html';">
+                                <td>JP Road</td>
+                                <td>2023-06-11 14:30:55</td>
+                                <td>Mischief</td>
+                                <td>Resolved</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KavachEye - Login Page</title>
+    <link rel="icon" href="images/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle, rgba(130,181,146,1) 0%, rgba(76,191,228,1) 0%, rgba(26,65,78,1) 32%, rgba(0,0,0,0.97) 73%, rgba(53,59,61,1) 100%);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .image-container {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .login-container {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 2.5em;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 0;
+            border: none;
+            border-bottom: 1px solid #999;
+            outline: none;
+            background-color: transparent;
+            font-size: 1em;
+            color: #000;
+        }
+
+        input::placeholder {
+            color: transparent; /* Hide placeholder text initially */
+        }
+
+        input:focus::placeholder {
+            color: #999; /* Show placeholder text on focus */
+            font-size: 0.7em;
+        }
+
+        label {
+            position: absolute;
+            top: 12px;
+            left: 0;
+            color: #999;
+            transition: 0.3s;
+            pointer-events: none;
+            font-size: 1em;
+            font-weight: normal;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        input:focus + label,
+        input:not(:placeholder-shown) + label {
+            top: -20px;
+            font-size: 0.9em;
+            color: #000;
+        }
+
+        .icon {
+            position: absolute;
+            right: 0;
+            top: 12px;
+            color: #000; /* Black color for icons */
+        }
+
+        button {
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: rgb(81, 139, 158);
+            color: black;
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .links a {
+            color: #000;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        .signup-button {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            background-color: #000;
+            color: white;
+            border: none;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, color 0.3s;
+            z-index: 2;
+        }
+
+        .signup-button:hover {
+            background-color: rgb(81, 139, 158);
+            color: black;
+        }
+
+        .header {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            z-index: 2;
+            font-weight: bold;
+        }
+
+        .logo {
+            position: relative;
+            left: 30px;
+            margin-top: 10px;
+            width: 150px;
+            height: 120px;
+        }
+
+        .title {
+            font-size: 3em;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="images/logo.png" alt="KavachEye Logo" class="logo">
+        <div class="title">KavachEye</div>
+    </div>
+    <div class="container">
+        <div class="image-container">
+            <img src="images/womensphoto.jpg" alt="Women's Photo">
+        </div>
+        <div class="login-container">
+            <h1>Login</h1>
+            <form>
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <label for="email">Email</label>
+                    <span class="icon"><i class="fas fa-envelope"></i></span>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <label for="password">Password</label>
+                    <span class="icon"><i class="fas fa-lock"></i></span>
+                </div>
+                <button type="submit">Login</button>
+                <div class="links">
+                    <a href="#">Forgot your password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <a href="registrationpage.html" class="signup-button">Sign Up</a>
+
+    
+</body>
+</html>
